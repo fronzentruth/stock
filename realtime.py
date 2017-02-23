@@ -11,7 +11,6 @@ import pandas as pd
 import threading
 import time
 import sys
-from sqlalchemy import create_engine
 from Queue import Queue
 from optparse import OptionParser
 
@@ -35,8 +34,7 @@ class Worker(threading.Thread):
                 for obj in res:
                     print obj[1]   
                 print '***** end *****\n'
-                engine = create_engine('mysql://root:66dcc55924@127.0.0.1/test?charset=utf8')
-                obj[1].to_sql('test',engine,if_exists='append')
+                
             self.work_queue.task_done()  
 
 class Stock(object):
